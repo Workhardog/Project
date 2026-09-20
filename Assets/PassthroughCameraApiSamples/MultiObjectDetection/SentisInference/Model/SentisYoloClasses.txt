@@ -1,0 +1,80 @@
+person 人 ㄖㄣˊ
+bicycle 腳踏車 ㄐㄧㄠˇ ㄊㄚˋ ㄔㄜ
+car 汽車 ㄑㄧˋ ㄔㄜ
+motorbike 摩托車 ㄇㄛˊ ㄊㄨㄛ ㄔㄜ
+aeroplane 飛機 ㄈㄟ ㄐㄧ
+bus 公車 ㄍㄨㄥ ㄔㄜ
+train 火車 ㄏㄨㄛˇ ㄔㄜ
+truck 卡車 ㄎㄚˇ ㄔㄜ
+boat 船 ㄔㄨㄢˊ
+traffic light 紅綠燈 ㄏㄨㄥˊ ㄌㄩˋ ㄉㄥ
+fire hydrant 消防栓 ㄒㄧㄠ ㄈㄤˊ ㄓㄨㄢ
+stop sign 停止標誌 ㄊㄧㄥˊ ㄓˇ ㄅㄧㄠ ㄓˋ
+parking meter 停車計時器 ㄊㄧㄥˊ ㄔㄜ ㄐㄧˋ ㄕˊ ㄑㄧˋ
+bench 長椅 ㄔㄤˊ ㄧˇ
+bird 鳥 ㄋㄧㄠˇ
+cat 貓 ㄇㄠ
+dog 狗 ㄍㄡˇ
+horse 馬 ㄇㄚˇ
+sheep 羊 ㄧㄤˊ
+cow 牛 ㄋㄧㄡˊ
+elephant 大象 ㄉㄚˋ ㄒㄧㄤˋ
+bear 熊 ㄒㄩㄥˊ
+zebra 斑馬 ㄅㄢ ㄇㄚˇ
+giraffe 長頸鹿 ㄔㄤˊ ㄐㄧㄥˇ ㄌㄨˋ
+backpack 背包 ㄅㄟˋ ㄅㄠ
+umbrella 雨傘 ㄩˇ ㄙㄢˇ
+handbag 手提包 ㄕㄡˇ ㄊㄧˊ ㄅㄠ
+tie 領帶 ㄌㄧㄥˇ ㄉㄞˋ
+suitcase 行李箱 ㄒㄧㄥˊ ㄌㄧˇ ㄒㄧㄤ
+frisbee 飛盤 ㄈㄟ ㄆㄢˊ
+skis 滑雪板 ㄏㄨㄚˊ ㄒㄩㄝˇ ㄅㄢˇ
+snowboard 單板滑雪 ㄉㄢ ㄅㄢˇ ㄏㄨㄚˊ ㄒㄩㄝˇ
+sports ball 運動球 ㄩㄣˋ ㄉㄨㄥˋ ㄑㄧㄡˊ
+kite 風箏 ㄈㄥ ㄓㄥ
+baseball bat 棒球棒 ㄅㄤˋ ㄑㄧㄡˊ ㄅㄤˋ
+baseball glove 棒球手套 ㄅㄤˋ ㄑㄧㄡˊ ㄕㄡˇ ㄊㄠˋ
+skateboard 滑板 ㄏㄨㄚˊ ㄅㄢˇ
+surfboard 衝浪板 ㄔㄨㄥ ㄌㄤˋ ㄅㄢˇ
+tennis racket 網球拍 ㄨㄤˇ ㄑㄧㄡˊ ㄆㄞ
+bottle 瓶子 ㄆㄧㄥˊ ㄗ
+wine glass 酒杯 ㄐㄧㄡˇ ㄅㄟ
+cup 杯子 ㄅㄟ ㄗ
+fork 叉子 ㄔㄚ ㄗ
+knife 刀子 ㄉㄠ ㄗ
+spoon 湯匙 ㄊㄤ ㄔˊ
+bowl 碗 ㄨㄢˇ
+banana 香蕉 ㄒㄧㄤ ㄐㄧㄠ
+apple 蘋果 ㄆㄧㄥˊ ㄍㄨㄛˇ
+sandwich 三明治 ㄙㄢ ㄇㄧㄥˊ ㄓˋ
+orange 柳橙 ㄌㄧㄡˇ ㄔㄥˊ
+broccoli 花椰菜 ㄏㄨㄚ ㄧㄝ ㄘㄞˋ
+carrot 胡蘿蔔 ㄏㄨˊ ㄌㄨㄛˊ ㄅㄛ
+hot dog 熱狗 ㄖㄜˋ ㄍㄡˇ
+pizza 披薩 ㄆㄧ ㄙㄚˋ
+donut 甜甜圈 ㄊㄧㄢˊ ㄊㄧㄢˊ ㄑㄩㄢ
+cake 蛋糕 ㄉㄢˋ ㄍㄠ
+chair 椅子 ㄧˇ ㄗ
+sofa 沙發 ㄕㄚ ㄈㄚ
+pottedplant 盆栽 ㄆㄣˊ ㄗㄞ
+bed 床 ㄔㄨㄤˊ
+diningtable 餐桌 ㄘㄢ ㄓㄨㄛ
+toilet 馬桶 ㄇㄚˇ ㄊㄨㄥˇ
+tvmonitor 電視螢幕 ㄉㄧㄢˋ ㄕˋ ㄧㄥˊ ㄇㄨˋ
+laptop 筆記型電腦 ㄅㄧˇ ㄐㄧˋ ㄒㄧㄥˊ ㄉㄧㄢˋ ㄋㄠˇ
+mouse 滑鼠 ㄏㄨㄚˊ ㄕㄨˇ
+remote 遙控器 ㄧㄠˊ ㄎㄨㄥˋ ㄑㄧˋ
+keyboard 鍵盤 ㄐㄧㄢˋ ㄆㄢˊ
+cell phone 手機 ㄕㄡˇ ㄐㄧ
+microwave 微波爐 ㄨㄟ ㄅㄛ ㄌㄨˊ
+oven 烤箱 ㄎㄠˋ ㄒㄧㄤ
+toaster 烤麵包機 ㄎㄠˋ ㄇㄧㄢˋ ㄅㄠ ㄐㄧ
+sink 水槽 ㄕㄨㄟˇ ㄘㄠˊ
+refrigerator 冰箱 ㄅㄧㄥ ㄒㄧㄤ
+book 書 ㄕㄨ
+clock 時鐘 ㄕˊ ㄓㄨㄥ
+vase 花瓶 ㄏㄨㄚ ㄆㄧㄥˊ
+scissors 剪刀 ㄐㄧㄢˇ ㄉㄠ
+teddy bear 泰迪熊 ㄊㄞˋ ㄉㄧˊ ㄒㄩㄥˊ
+hair drier 吹風機 ㄔㄨㄟ ㄈㄥ ㄐㄧ
+toothbrush 牙刷 ㄧㄚˊ ㄕㄨㄚ

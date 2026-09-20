@@ -1,0 +1,91 @@
+# ══════════════════════════════════════════════════
+#  Unity × Meta Quest 3 × Sentis  ─  .gitignore
+#  根據實際專案結構 Unity-PassthroughCameraApiSamples
+# ══════════════════════════════════════════════════
+
+# ── Unity 核心快取（絕對排除）────────────────────
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+*.pidb
+*.pdb
+*.mdb
+sysinfo.txt
+
+# ── Unity 編譯產物 ───────────────────────────────
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# 你的根目錄有多個 .apk，全部排除
+test3d.apk
+test3d2.apk
+test3d3.apk
+test3d4.apk
+test3d5.apk
+testchange.apk
+testchange2.apk
+testchange3.apk
+
+# ── Burst 編譯快取 ───────────────────────────────
+passthroughcamera_BurstDebugInformation_DoNotShip/
+
+# ── Android / CMake 編譯暫存（.utmp）────────────
+.utmp/
+
+# ── Visual Studio / Rider 產生的專案檔 ──────────
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
+meta.xr.mrutilitykit.csproj
+meta.xr.mrutilitykit.editor.csproj
+meta.xr.mrutilitykit.tests.csproj
+Unity-PassthroughCameraApiSamples.sln
+Unity-PassthroughCameraApiSamples.slnx
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ── VS Code 設定（可選，視團隊需求決定）─────────
+# 若要分享 settings 給隊友請把下面三行改為注解
+.vscode/extensions.json
+.vscode/launch.json
+.vscode/settings.json
+
+# ── AI 模型檔（體積龐大，改用 Releases 發布）────
+# ONNX 模型
+Assets/PassthroughCameraApiSamples/MultiObjectDetection/SentisInference/Model/*.onnx
+# Sentis 序列化模型
+Assets/PassthroughCameraApiSamples/MultiObjectDetection/SentisInference/Model/*.sentis
+
+# ── Meta / Oculus 帳號設定（含敏感資訊）─────────
+Assets/Oculus/OculusProjectConfig.asset
+Assets/Oculus/OculusProjectSetupSettings.asset
+Assets/MetaXR/MetaXRProjectSettings.asset
+Assets/Resources/OVRPlatformToolSettings.asset
+
+# ── OS 系統檔 ────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# ── 工具腳本（本機用，不需上傳）────────────────
+generate_structure.py
+
+# ══ 保留上傳的重要檔案（不排除）═════════════════
+# Assets/PassthroughCameraApiSamples/  ← 你的核心程式碼
+# Assets/Plugins/Android/AndroidManifest.xml
+# Assets/StreamingAssets/              ← 保留空目錄（加 .gitkeep）
+# Packages/manifest.json               ← 套件清單（必須上傳）
+# Packages/packages-lock.json          ← 版本鎖定（建議上傳）
+# ProjectSettings/                     ← 專案設定（必須上傳）
+# docs/                                ← Demo GIF（必須上傳）
+# Media/                               ← Demo GIF（必須上傳）
