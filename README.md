@@ -13,16 +13,13 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 <br/>
-> 簡介：一款基於 Meta Quest 3 XR 功能，以 YOLO 模型即時辨識現實物體，且能達到教育目的的應用程式。
-> **在Meta Quest 3上，透過Passthrough Camera即時辨識80種現實物件，**  
-> **並以OVR空間錨點將3D標記精準固定於真實場景，完全本地推理、無需雲端。**
-
+> 簡介：一款基於 Meta Quest 3 XR 功能，以 YOLO 視覺模型即時辨識現實物體，且能達到教育目的的應用程式。
 <br/>
 
 ![Demo](docs/demo.gif)
 ![Demo2](docs/demo2.gif)
 
-**▶ 📦 [下載 APK](../../releases)　｜　🤖 [下載模型](../../releases)**
+**▶ 📦 [下載 APK](../../releases/download/v1.0.0/testchange3.apk)　｜　🤖 [下載v8視覺模型](../../releases/download/v1.0.0/yolov8n.onnx)　｜　🤖 [下載v9視覺模型](../../releases/download/v1.0.0/yolov9n.onnx)　｜　🤖 [下載v9sentis視覺模型](../../releases/download/v1.0.0/yolov9sentis.sentis)**
 </div>
 
 ---
@@ -45,11 +42,11 @@
 
 | 特色 | 說明 |
 |------|------|
-| 🚀 **完全本地推理** | YOLO模型直接運行於Quest 3，無網路延遲、保護隱私 |
-| 🎯 **雙模型支援** | 同時支援YOLOv8n（.onnx）與YOLOv9（.onnx / .sentis）|
+| 🚀 **完全本地辨識** | YOLO視覺模型直接運行於Quest 3，無網路延遲、保護隱私 |
+| 🎯 **雙視覺模型支援** | 同時支援YOLOv8n（.onnx）與YOLOv9（.onnx / .sentis）|
 | 📌 **空間錨點持久化** | OVRSpatialAnchor 將2D轉3D標記並固定於真實位置，不隨頭部飄移 |
-| ⚡ **啟動預熱機制** | PreloadModel()消除首次推理卡頓，確保使用體驗流暢 |
-| 🔁 **暫停/恢復推理** | 選單開啟時自動暫停推理，節省GPU資源 |
+| ⚡ **啟動預熱機制** | PreloadModel()消除首次辨識延遲，確保使用體驗流暢 |
+| 🔁 **暫停/恢復辨識** | 選單開啟時自動暫停辨識，節省GPU資源 |
 | 🛡️ **防重複標記** | 座標系轉換+Rect.Contains()演算法避免同位置重複生成 |
 | 🎮 **直覺操作** | 左手進選單、右手A鍵生成3D標記 / B鍵清除全部，單手控制器操作 |
 
@@ -57,7 +54,7 @@
 
 ## 🎯 專案動機與目標
 
-簡述：此專題用意為證明AI模型可以在Meta Quest 3這類獨立邊緣裝置上以純本地端運行。達到不連網、大幅降低隱私風險，且能大幅降低傳輸延遲，最後在教育等方面上進行應用。
+簡述：此專題用意為證明視覺模型可以在Meta Quest 3這類獨立邊緣裝置上以純本地端運行。達到不連網、大幅降低隱私風險，且能大幅降低傳輸延遲，最後在教育等方面上進行應用。
 
 ## 🏗 系統架構
 
@@ -79,7 +76,7 @@
 ┌──────────────────────────────────────────┐
 │         Unity Sentis Worker              │
 │   BackendType.GPUCompute / CPU           │
-│   執行 YOLO 推理（On-Device）            │
+│   執行 YOLO 辨識（On-Device）            │
 │   ├── Output[0]: 小尺度偵測 (80×80)     │
 │   ├── Output[1]: 中尺度偵測 (40×40)     │
 │   └── Output[2]: 大尺度偵測 (20×20)     │
@@ -123,14 +120,14 @@
 ### ✨ 核心技術重點
 
 - **XR 整合**：整合Meta XR SDK，提取Passthrough即時彩色透視影像串流作為輸入源，並結合控制器與手勢追蹤實作沉浸式3D UI互動。
-- **模型部署**：使用PyTorch進行ONNX格式轉換與結構優化，並使用Unity Sentis作為本地端推論引擎執行預訓練YOLOv9模型。
+- **模型部署**：使用PyTorch進行ONNX格式轉換與結構優化，並使用Unity Sentis作為本地端推論引擎執行預訓練YOLOv9視覺模型。
 - **效能優化**：針對固有算力瓶頸，設計非同步推論與GPU算力排程，避免Unity主執行緒滿溢，搭配影像分類抽樣。
 - **座標轉換**： 研究並調校NMS/IoU演算法排除重疊框，並透過相機內參數及射線投射，將2D影像邊界框中心點轉換為3D實體空間座標完成3D標籤錨定。
 
-### 1️⃣ 模型預熱：消除首次推理卡頓
+### 1️⃣ 視覺模型預熱：消除首次辨識延遲
 
-第一次 GPU 推理會觸發 Shader 編譯，凍結畫面 3～5 秒。  
-解法：App 啟動時用假圖執行一次完整推理，提前完成編譯。
+第一次 GPU 辨識會觸發 Shader 編譯，凍結畫面 3～5 秒。  
+解法：App 啟動時用假圖執行一次完整辨識，提前完成編譯。
 
 ```csharp
 internal static void PreloadModel(ModelAsset modelAsset)
@@ -138,7 +135,7 @@ internal static void PreloadModel(ModelAsset modelAsset)
     var model = ModelLoader.Load(modelAsset);
     using var worker = new Worker(model, BackendType.CPU);
 
-    // 用 2×2 假圖觸發完整推理流程
+    // 用 2×2 假圖觸發完整辨識流程
     Texture tempTexture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
     using var input = new Tensor<float>(
         new TensorShape(1, 3, inputShape.Get(2), inputShape.Get(3))
@@ -154,7 +151,7 @@ internal static void PreloadModel(ModelAsset modelAsset)
 }
 ```
 
-### 2️⃣ 主推理迴圈：暫停/恢復控制
+### 2️⃣ 主辨識迴圈：暫停/恢復控制
 
 ```csharp
 private IEnumerator Start()
@@ -163,11 +160,11 @@ private IEnumerator Start()
 
     while (true)
     {
-        // 選單開啟時暫停推理，節省 GPU 資源
+        // 選單開啟時暫停辨識，節省 GPU 資源
         while (m_uiMenuManager.IsPaused)
             yield return null;
 
-        yield return RunInference(); // 執行一次推理後繼續迴圈
+        yield return RunInference(); // 執行一次辨識後繼續迴圈
     }
 }
 ```
@@ -214,7 +211,7 @@ if (!result.Success) { EraseSpatialAnchor(); yield break; }
 
 ## 🔧 開發挑戰與解法
 
-### ❌ 挑戰 1：Quest 3上執行PyTorch模型無法得到高效能
+### ❌ 挑戰 1：Quest 3上執行PyTorch視覺模型無法得到高效能
    **原因**：原因為跨記憶體區塊的頻繁複製
    **解法**：轉換成ONNX並用Sentis做裝置端推論，且因Sentis為原生開發的推論引擎，能大幅提升該FPS
 ### ❌ 挑戰 2：主執行緒同步推論導致畫面卡住與嚴重暈眩感
@@ -235,9 +232,9 @@ if (!result.Success) { EraseSpatialAnchor(); yield break; }
 | 引擎 | Unity 6000.3.2f1 |
 | 邊緣裝置 | Meta Quest 3 |
 | XR SDK | Meta XR SDK |
-| 物件偵測模型 | YOLOv9 |
+| 物件偵測視覺模型 | YOLOv9 |
 | 推論框架 | Unity Sentis / ONNX Runtime |
-| 語言 | C# / Python(轉模型用) |
+| 語言 | C# / Python(轉視覺模型用) |
 | 開發者模式 | Quest 3 已開啟 |
 
 ### 安裝步驟
@@ -250,8 +247,8 @@ cd Unity-PassthroughCameraApiSamples
 # 2. 用 Unity Hub 開啟（選擇 Unity 6000.3.2f1 or Unity 6000.x 可相容版本）
 #    File → Open Project → 選擇此資料夾
 
-# 3. 下載 YOLO 模型（不含於 repo，請至 Releases 下載）
-#    → 下載 yolov8n.onnx 與 yolov9onnx.onnx 也可自行嘗試衍生模型 / 改進版本模型
+# 3. 下載 YOLO 視覺模型（不含於 repo，請至 Releases 下載）
+#    → 下載 yolov8n.onnx 與 yolov9onnx.onnx 也可自行嘗試衍生視覺模型 / 改進版本視覺模型
 #    → 放置於以下路徑：
 #    Assets/PassthroughCameraApiSamples/MultiObjectDetection/SentisInference/Model/
 
@@ -259,7 +256,7 @@ cd Unity-PassthroughCameraApiSamples
 #    File → Build Profiles → Android → Build And Run
 ```
 
-> ⚠️ **模型下載**：請至 [Releases](../../releases) 頁面下載 ONNX 模型檔案（因體積較大未含於 repo）
+> ⚠️ **視覺模型下載**：請至 [Releases](../../releases) 頁面下載 ONNX 模型檔案
 
 ### 操作說明
 
@@ -267,7 +264,7 @@ cd Unity-PassthroughCameraApiSamples
 |------|------|
 | **A 鍵**（放開）| 在當前偵測框位置生成 3D 空間標記 |
 | **B 鍵**（按下）| 清除所有已生成的 3D 標記 |
-| **MENU 鍵** | 開啟/關閉選單（暫停推理） |
+| **MENU 鍵** | 開啟/關閉選單（暫停辨識） |
 
 ---
 
@@ -292,7 +289,7 @@ Unity-PassthroughCameraApiSamples/
 │       │       │   ├── coco_classes.txt             # COCO 80 類別（英文）
 │       │       │   └── SentisYoloClasses.txt        # 類別標籤
 │       │       └── Scripts/
-│       │           ├── SentisInferenceRunManager.cs # AI 推理核心
+│       │           ├── SentisInferenceRunManager.cs # AI 辨識核心
 │       │           └── SentisInferenceUiManager.cs  # BoundingBox UI
 │       ├── BrightnessEstimation/          亮度估測
 │       ├── CameraToWorld/                 座標轉換
@@ -300,7 +297,7 @@ Unity-PassthroughCameraApiSamples/
 │       ├── ShaderSample/                  Shader 效果
 │       └── StartScene/                   主選單
 ├── docs/
-│   ├── demo.gif                           ⭐ 主 Demo 動圖
+│   ├── demo.gif                           ⭐ 主 Demo GIF
 │   └── demo2.gif
 ├── Media/
 │   ├── ObjectDetectionSentis.gif          物件偵測展示
@@ -317,8 +314,8 @@ Unity-PassthroughCameraApiSamples/
 
 ## 🔮 未來規劃
 
-- [ ] 模型量化（INT8 / FP16）提升Quest 3推理FPS
-- [ ] 支援自訂YOLO訓練模型（Custom Classes）
+- [ ] 模型量化（INT8 / FP16）提升Quest 3辨識FPS
+- [ ] 支援自訂YOLO訓練視覺模型（Custom Classes）
 - [ ] 多人共享空間錨點（Shared Spatial Anchors）
 - [ ] 語音播報偵測結果（TTS 整合）
 - [ ] 信心值閾值滑桿（Inspector 即時調整）
@@ -326,16 +323,6 @@ Unity-PassthroughCameraApiSamples/
 
 ---
 
-## 🖼 更多展示
-
-| 功能 | 預覽 |
-|------|------|
-| 多物件即時偵測 | ![detect](Media/ObjectDetectionSentis.gif) |
-| 亮度估測 | ![brightness](Media/BrightnessEstimation.gif) |
-| 座標轉換 | ![camera](Media/CameraToWorld.gif) |
-| Shader 效果 | ![shader](Media/ShaderSample.gif) |
-
----
 
 ## 👤 關於作者
 
@@ -345,7 +332,7 @@ Unity-PassthroughCameraApiSamples/
 
 | | |
 |---|---|
-| 🔭 研究方向 | XR 開發、On-Device AI 推理、電腦視覺、物件偵測 |
+| 🔭 研究方向 | XR 開發、On-Device AI 辨識、電腦視覺、物件偵測 |
 | 🛠 技術棧 | C#、Python、Unity 6、Meta XR SDK、YOLO、Unity Sentis、ONNX |
 | 🐙 GitHub | [@Workhardog](https://github.com/Workhardog) |
 
